@@ -1,146 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-boot-security-saml-sample</artifactId>
-	<groupId>com.vdenotaris.spring</groupId>
-	<version>1.0.0.RELEASE</version>
-	<packaging>war</packaging>
+  <artifactId>spring-boot-security-saml-sample</artifactId>
+  <groupId>com.vdenotaris.spring</groupId>
+  <version>1.0.1-SNAPSHOT</version>
 
-	<!-- Project description -->
-	<name>Spring Boot and Spring Security SAML integration sample</name>
-	<description>
-		Currently Spring Security SAML module doesn't provide a starter for Spring Boot. 
-		Moreover, its configuration is XML-based as of this writing. The aim of this project 
-		is to explain how to develop a Service Provider (SP) which uses Spring Boot (1.1.6) 
-		and Spring Security SAML Extention (1.0.0.RELEASE), by defining an annotation-based 
-		configuration (Java Configuration). Thymeleaf (2.1.1) is also used as template engine.
-	</description>
-	<url>https://github.com/vdenotaris/spring-boot-security-saml-sample</url>
-	
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-		</license>
-	</licenses>
-	
-	<inceptionYear>2014</inceptionYear>
-	
-	<developers>
-		<developer>
-			<id>vdenotaris</id>
-			<name>Vincenzo De Notaris</name>
-			<email>dev at vdenotaris.com</email>
-			<timezone>+1</timezone>
-		</developer>
-	</developers>
-	<contributors>
-		<contributor>
-			<name>Vladimír Schäfer</name>
-		</contributor>
-	</contributors>
+  <!-- Project description -->
+  <name>Spring Boot and Spring Security SAML Integration Sample</name>
+  <description>
+    Adaptation of Vincenzo De Notaris' sample project with more current Spring
+    dependencies (including a direct dependency on Spring Boot rather than the
+    Spring Platform), and producing an executable JAR using an embedded Jetty
+    container instead of a deployable WAR file. This is primarily to reflect
+    the requirements of another project on which I am working, as well as to
+    demonstrate how such an approach would work in general.
 
-	<!-- Project properties -->
-	<properties>
-		<start-class>com.vdenotaris.spring.boot.security.saml.web.Application</start-class>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<spring.platform.version>1.0.2.RELEASE</spring.platform.version>
-		<spring.saml.version>1.0.0.RELEASE</spring.saml.version>
-	</properties>
+    From the original POM:
 
+    Currently Spring Security SAML module doesn't provide a starter for Spring Boot.
+    Moreover, its configuration is XML-based as of this writing. The aim of this project
+    is to explain how to develop a Service Provider (SP) which uses Spring Boot (1.1.6)
+    and Spring Security SAML Extention (1.0.0.RELEASE), by defining an annotation-based
+    configuration (Java Configuration). Thymeleaf (2.1.1) is also used as template engine.
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- Spring Platform Dependency Manager -->
-			<dependency>
-				<groupId>io.spring.platform</groupId>
-				<artifactId>platform-bom</artifactId>
-				<version>${spring.platform.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    Original project URL: https://github.com/vdenotaris/spring-boot-security-saml-sample
+  </description>
+  <url>https://github.com/daecabhir/spring-boot-security-saml-sample</url>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.extensions</groupId>
-			<artifactId>spring-security-saml2-core</artifactId>
-			<version>${spring.saml.version}</version>
-		</dependency>
-	</dependencies>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+  <inceptionYear>2014</inceptionYear>
 
-	<scm>
-		<connection>scm:git:git@github.com:vdenotaris/spring-boot-security-saml-sample.git</connection>
-		<url>scm:git:git@github.com:vdenotaris/spring-boot-security-saml-sample.git</url>
-		<developerConnection>scm:git:git@github.com:vdenotaris/spring-boot-security-saml-sample.git</developerConnection>
-	</scm>
+  <developers>
+    <developer>
+      <id>vdenotaris</id>
+      <name>Vincenzo De Notaris</name>
+      <email>dev at vdenotaris.com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>daecabhir</id>
+      <name>Gregory Wright</name>
+      <email>daecabhir at gmail dot com</email>
+      <timezone>-5</timezone>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Vladimír Schäfer</name>
+    </contributor>
+  </contributors>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5</version>
-			</plugin>
-			<plugin>
-    				<artifactId>maven-war-plugin</artifactId>
-    				<configuration>
-        				<failOnMissingWebXml>false</failOnMissingWebXml>
-    				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<verbose>true</verbose>
-					<fork>true</fork>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+  <!-- Project properties -->
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
+    <spring.saml.version>1.0.1.RELEASE</spring.saml.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <!--
+         ! Import dependency management from Spring Boot
+         !
+         ! NOTE: Importing this will require explicit configuration of the
+         ! Sprint Boot plug-in.
+        -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring.boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security.extensions</groupId>
+      <artifactId>spring-security-saml2-core</artifactId>
+      <version>${spring.saml.version}</version>
+    </dependency>
+  </dependencies>
+
+  <!--
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>http://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  -->
+
+  <scm>
+    <connection>scm:git:git@github.com:daecabhir/spring-boot-security-saml-sample.git</connection>
+    <url>scm:git:git@github.com:daecabhir/spring-boot-security-saml-sample.git</url>
+    <developerConnection>scm:git:git@github.com:daecabhir/spring-boot-security-saml-sample.git</developerConnection>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring.boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>
